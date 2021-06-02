@@ -3,7 +3,11 @@ class Statement
     header = 'date || credit || debit || balance'
     entries = ''
     log.reverse.each do |entry|
-      entries += "\n#{entry[:date]} || #{round_to_two_dp(entry[:amount])} || || #{round_to_two_dp(entry[:balance])}"
+      if entry[:type] == 'deposit'
+        entries += "\n#{entry[:date]} || #{round_to_two_dp(entry[:amount])} || || #{round_to_two_dp(entry[:balance])}"
+      else
+        entries += "\n#{entry[:date]} || || #{round_to_two_dp(entry[:amount])} || #{round_to_two_dp(entry[:balance])}"
+      end
     end
     header + entries
   end

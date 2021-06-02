@@ -38,5 +38,11 @@ describe Statement do
       account_statement = header + line_one + line_two
       expect(statement.view(log)).to eq(account_statement)
     end
+
+    it 'can display a withdrawral' do
+      log = [{ type: 'withdrawral', amount: 123.1, date: '01/01/2001', balance: -123.1 }]
+      account_statement = "date || credit || debit || balance\n01/01/2001 || || 123.10 || -123.10"
+      expect(statement.view(log)).to eq(account_statement)
+    end
   end
 end
