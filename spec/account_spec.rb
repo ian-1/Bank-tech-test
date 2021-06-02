@@ -19,10 +19,16 @@ describe Account do
     end
 
     it "can accept a deposit and add today's date to log" do
-      account.deposit(999)
+      account.deposit(1)
       date = Time.now
       today = date.strftime('%d/%m/%Y')
       expect(account.log[0][:date]).to eq(today)
+    end
+
+    it 'can accept a deposit and add a user provided date to log' do
+      date = '30/12/1999'
+      account.deposit(1, date)
+      expect(account.log[0][:date]).to eq(date)
     end
   end
 end

@@ -5,11 +5,11 @@ class Account
     @log = []
   end
 
-  def deposit(amount)
+  def deposit(amount, date = todays_date)
     transaction = {
       type: 'deposit',
       amount: amount,
-      date: todays_date
+      date: date
     }
     @log << transaction
   end
