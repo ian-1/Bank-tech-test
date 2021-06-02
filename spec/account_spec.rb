@@ -1,14 +1,21 @@
 require 'account'
 
 describe Account do
+  let(:account) { described_class.new }
+
   it 'can make a new account' do
-    expect(Account.new).to be_instance_of(Account)
+    expect(described_class.new).to be_instance_of(described_class)
   end
 
   describe '#deposit' do
     it 'can accept a deposit and add a deposit type transaction to log' do
-      subject.deposit(9999)
-      expect(subject.log[0][:type]).to eq('deposit')
+      account.deposit(9999)
+      expect(account.log[0][:type]).to eq('deposit')
+    end
+
+    it 'can accept a deposit and add a deposit amount to log' do
+      account.deposit(123)
+      expect(account.log[0][:amount]).to eq(123)
     end
   end
 end

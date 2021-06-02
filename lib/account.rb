@@ -6,6 +6,10 @@ class Account
   end
 
   def deposit(amount)
-    @log << { type: 'deposit' }
+    transaction = {
+      type: 'deposit',
+      amount: amount
+    }
+    @log << transaction
   end
 end
