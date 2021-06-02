@@ -72,6 +72,13 @@ describe Account do
       account.withdraw(987.6)
       expect(account.log.first[:balance]).to eq(-987.60)
     end
+
+    it 'can accept multiple withdrawals and add a running ballance to log' do
+      account.withdraw(1)
+      account.withdraw(1)
+      account.withdraw(1)
+      expect(account.log.last[:balance]).to eq(-3)
+    end
   end
 
   describe '#statement' do
