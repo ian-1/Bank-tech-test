@@ -67,6 +67,11 @@ describe Account do
       account.withdraw(1, date)
       expect(account.log.first[:date]).to eq(date)
     end
+
+    it 'can accept a withdrawal and minus a ballance from log' do
+      account.withdraw(987.6)
+      expect(account.log.first[:balance]).to eq(-987.60)
+    end
   end
 
   describe '#statement' do

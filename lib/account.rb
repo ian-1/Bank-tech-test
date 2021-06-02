@@ -15,6 +15,7 @@ class Account
   end
 
   def withdraw(amount, date = todays_date)
+    @balance -= amount
     add_to_log('withdrawal', amount, date)
   end
 
