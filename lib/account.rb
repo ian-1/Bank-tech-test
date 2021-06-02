@@ -5,16 +5,13 @@ class Account
 
   def initialize(statement = Statement.new)
     @log = []
+    @balance = 0
     @statement = statement
   end
 
   def deposit(amount, date = todays_date)
-    transaction = {
-      type: 'deposit',
-      amount: amount,
-      date: date
-    }
-    @log << transaction
+    @balance += amount
+    add_to_log('deposit', amount, date)
   end
 
   def statement
@@ -22,6 +19,16 @@ class Account
   end
 
   private
+
+  def add_to_log(type, amount, date)
+    transaction = {
+      type: type,
+      amount: amount,
+      date: date,
+      balance: @balance
+    }
+    @log << transaction
+  end
 
   def todays_date
     time = Time.now

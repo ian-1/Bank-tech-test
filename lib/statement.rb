@@ -2,20 +2,22 @@ class Statement
   def view(log)
     header = 'date || credit || debit || balance'
     entries = ''
-    entry = log[0]
-    entries = "\n#{entry[:date]} || #{two_dp(entry[:amount])} || || #{two_dp(entry[:amount])}" unless log == []
+    log.reverse.each do |entry|
+      entries += "\n#{entry[:date]} || #{round_to_two_dp(entry[:amount])} || || #{round_to_two_dp(entry[:balance])}"
+    end
     header + entries
   end
 
   private
 
-  def two_dp(amount)
+  def round_to_two_dp(amount)
     if whole_number?(amount)
       "#{amount}.00"
     elsif whole_number?(amount * 10)
       "#{amount}0"
     else
-      amount
+      split_amount = amount.to_s.split('.')
+      "#{split_amount[0]}.#{split_amount[1][0..1]}"
     end
   end
 

@@ -10,25 +10,37 @@ describe Account do
   describe '#deposit' do
     it 'can accept a deposit and add a deposit type transaction to log' do
       account.deposit(9999)
-      expect(account.log[0][:type]).to eq('deposit')
+      expect(account.log.first[:type]).to eq('deposit')
     end
 
     it 'can accept a deposit and add a deposit amount to log' do
       account.deposit(123)
-      expect(account.log[0][:amount]).to eq(123)
+      expect(account.log.first[:amount]).to eq(123)
     end
 
     it "can accept a deposit and add today's date to log" do
       account.deposit(1)
       date = Time.now
       today = date.strftime('%d/%m/%Y')
-      expect(account.log[0][:date]).to eq(today)
+      expect(account.log.first[:date]).to eq(today)
     end
 
     it 'can accept a deposit and add a user provided date to log' do
       date = '30/12/1999'
       account.deposit(1, date)
-      expect(account.log[0][:date]).to eq(date)
+      expect(account.log.first[:date]).to eq(date)
+    end
+
+    it 'can accept a deposit and add a ballance to log' do
+      account.deposit(1.23)
+      expect(account.log.first[:balance]).to eq(1.23)
+    end
+
+    it 'can accept multiple deposits and add a running ballance to log' do
+      account.deposit(1)
+      account.deposit(1)
+      account.deposit(1)
+      expect(account.log.last[:balance]).to eq(3)
     end
   end
 
@@ -46,7 +58,7 @@ describe Account do
       stub_account.deposit(123, '01/01/1990')
       allow(stub_statement).to receive(:view)
       stub_account.statement
-      expect(stub_statement).to have_received(:view).with([{ type: 'deposit', amount: 123, date: '01/01/1990' }])
+      expect(stub_statement).to have_received(:view).with([{ type: 'deposit', amount: 123, date: '01/01/1990', balance: 123}])
     end
   end
 end
