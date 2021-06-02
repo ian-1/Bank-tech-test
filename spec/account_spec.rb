@@ -31,4 +31,11 @@ describe Account do
       expect(account.log[0][:date]).to eq(date)
     end
   end
+
+  describe '#statement' do
+    it 'can return a blank statement' do
+      blank_statement = 'date || credit || debit || balance'
+      expect(account.statement).to eq(blank_statement)
+    end
+  end
 end

@@ -14,6 +14,10 @@ class Account
     @log << transaction
   end
 
+  def statement
+    'date || credit || debit || balance'
+  end
+
   private
 
   def todays_date
