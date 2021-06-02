@@ -27,7 +27,7 @@ To run tests the following gems will need to be installed using `bundler` (not r
 
 ### Example
 
-Aclient makes a **deposit** of **1000** on 10-01-2012 
+A client makes a **deposit** of **1000** on 10-01-2012 
 And a **deposit** of **2000** on 13-01-2012 
 And a **withdrawal** of **500** on 14-01-2012 
 When the client prints thier bank statement  they would see:
