@@ -1,7 +1,7 @@
 require 'account'
 
 # rubocop:disable RSpec/DescribeClass
-describe 'Deposit and see statement' do
+xdescribe 'Deposit and see statement' do
   it 'make a deposit and see it within a statement' do
     ac = Account.new
     ac.deposit(1, '01/01/2000')
