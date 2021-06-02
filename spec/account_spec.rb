@@ -17,5 +17,12 @@ describe Account do
       account.deposit(123)
       expect(account.log[0][:amount]).to eq(123)
     end
+
+    it "can accept a deposit and add today's date to log" do
+      account.deposit(999)
+      date = Time.now
+      today = date.strftime("%d/%m/%Y")
+      expect(account.log[0][:date]).to eq(today)
+    end
   end
 end
