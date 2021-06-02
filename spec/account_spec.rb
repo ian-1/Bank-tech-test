@@ -33,9 +33,13 @@ describe Account do
   end
 
   describe '#statement' do
-    it 'can return a blank statement' do
-      blank_statement = 'date || credit || debit || balance'
-      expect(account.statement).to eq(blank_statement)
+    it 'calls statement.view with empty log as attribute' do
+      stub_statement = double(:stub_statement)
+      stub_account = described_class.new(stub_statement)
+
+      allow(stub_statement).to receive(:view)
+      stub_account.statement
+      expect(stub_statement).to have_received(:view).with([])
     end
   end
 end

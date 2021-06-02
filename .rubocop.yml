@@ -26,15 +26,14 @@ RSpec/Capybara/FeatureMethods:
 
 # Increase maximum rspec example length
 RSpec/ExampleLength:
-  Max: 15
+  Max: 8
 
-# Allow tests to have multiple expectations (needed for scenario tests)
-RSpec/MultipleExpectations:
-  Max: 3
-  
+# Allow use of normal doubles
+RSpec/VerifiedDoubles:
+  Enabled: false
+
 # Don't restrict length of rspec blocks
 Metrics/BlockLength:
   IgnoredMethods:
     - describe
     - context
-    - feature

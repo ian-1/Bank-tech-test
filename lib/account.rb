@@ -1,8 +1,11 @@
+require 'statement'
+
 class Account
   attr_reader :log
 
-  def initialize
+  def initialize(statement = Statement.new)
     @log = []
+    @statement = statement
   end
 
   def deposit(amount, date = todays_date)
@@ -15,7 +18,7 @@ class Account
   end
 
   def statement
-    'date || credit || debit || balance'
+    @statement.view(@log)
   end
 
   private
