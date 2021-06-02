@@ -14,5 +14,17 @@ describe Statement do
       account_statement = "date || credit || debit || balance\n01/01/2001 || 123.00 || || 123.00"
       expect(statement.view(log)).to eq(account_statement)
     end
+
+    it 'can display a deposit with pence/cents etc' do
+      log = [{ type: 'deposit', amount: 123.45, date: '01/01/2001' }]
+      account_statement = "date || credit || debit || balance\n01/01/2001 || 123.45 || || 123.45"
+      expect(statement.view(log)).to eq(account_statement)
+    end
+
+    it 'can display a deposit with 1 decimal point of pence/cents etc' do
+      log = [{ type: 'deposit', amount: 123.4, date: '01/01/2001' }]
+      account_statement = "date || credit || debit || balance\n01/01/2001 || 123.40 || || 123.40"
+      expect(statement.view(log)).to eq(account_statement)
+    end
   end
 end
