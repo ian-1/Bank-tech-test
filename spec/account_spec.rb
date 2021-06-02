@@ -33,13 +33,20 @@ describe Account do
   end
 
   describe '#statement' do
-    it 'calls statement.view with empty log as attribute' do
-      stub_statement = double(:stub_statement)
-      stub_account = described_class.new(stub_statement)
+    let(:stub_statement) { double(:stub_statement) }
+    let(:stub_account) { described_class.new(stub_statement) }
 
+    it 'calls statement.view with empty log as attribute' do
       allow(stub_statement).to receive(:view)
       stub_account.statement
       expect(stub_statement).to have_received(:view).with([])
+    end
+
+    it 'calls statement.view with a deposit in log as attribute' do
+      stub_account.deposit(123, '01/01/1990')
+      allow(stub_statement).to receive(:view)
+      stub_account.statement
+      expect(stub_statement).to have_received(:view).with([{ type: 'deposit', amount: 123, date: '01/01/1990' }])
     end
   end
 end
