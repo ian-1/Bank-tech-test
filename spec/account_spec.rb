@@ -57,8 +57,9 @@ describe Account do
     it 'calls statement.view with a deposit in log as attribute' do
       stub_account.deposit(123, '01/01/1990')
       allow(stub_statement).to receive(:view)
+      log = [{ type: 'deposit', amount: 123, date: '01/01/1990', balance: 123 }]
       stub_account.statement
-      expect(stub_statement).to have_received(:view).with([{ type: 'deposit', amount: 123, date: '01/01/1990', balance: 123}])
+      expect(stub_statement).to have_received(:view).with(log)
     end
   end
 end
