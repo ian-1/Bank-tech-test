@@ -9,8 +9,15 @@ class Account
     transaction = {
       type: 'deposit',
       amount: amount,
-      date:  Time.now.strftime("%d/%m/%Y")
+      date: todays_date
     }
     @log << transaction
+  end
+
+  private
+
+  def todays_date
+    time = Time.now
+    time.strftime('%d/%m/%Y')
   end
 end
