@@ -44,6 +44,31 @@ describe Account do
     end
   end
 
+  describe '#withdraw' do
+    it 'can accept a withdrawal and add a withdrawral type transaction to log' do
+      account.withdraw(9999)
+      expect(account.log.first[:type]).to eq('withdrawal')
+    end
+
+    it 'can accept a withdrawal and add a withdrawal amount to log' do
+      account.withdraw(123)
+      expect(account.log.first[:amount]).to eq(123)
+    end
+
+    it "can accept a withdrawal and add today's date to log" do
+      account.withdraw(1)
+      date = Time.now
+      today = date.strftime('%d/%m/%Y')
+      expect(account.log.first[:date]).to eq(today)
+    end
+
+    it 'can accept a withdrawral and add a user provided date to log' do
+      date = '30/12/1999'
+      account.withdraw(1, date)
+      expect(account.log.first[:date]).to eq(date)
+    end
+  end
+
   describe '#statement' do
     let(:stub_statement) { double(:stub_statement) }
     let(:stub_account) { described_class.new(stub_statement) }

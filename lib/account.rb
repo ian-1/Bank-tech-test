@@ -14,6 +14,10 @@ class Account
     add_to_log('deposit', amount, date)
   end
 
+  def withdraw(amount, date = todays_date)
+    add_to_log('withdrawal', amount, date)
+  end
+
   def statement
     @statement.view(@log)
   end
