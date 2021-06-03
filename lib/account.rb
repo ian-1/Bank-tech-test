@@ -1,5 +1,5 @@
-require 'statement'
-require 'date'
+require_relative 'statement'
+require_relative 'date'
 
 class Account
   attr_reader :log

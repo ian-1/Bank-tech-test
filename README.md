@@ -6,40 +6,6 @@ The program accepts the user inputting either a deposit or a withdrawal of money
 
 This program was built  using **TDD** as part of [**Makers Academy Coding Bootcamp**]([http://makers.tech](http://makers.tech/)).
 
-
-
-Describe how to install dependencies, run your tests, and run the project?
-
-Describe your approach?
-
-Describe how you structured your code and why?
-
-Account - acts a controller redirecting user to either Transaction (deposit/withdraw) or Statement (view). This means the user does not need to understand the split in functionality between the classes in order to use all features available (and does not need to instantiate each class separately).
-
-Transaction - allows user to add/subtract from the balance through deposit/withdraw transactions
-
-Log - stores a log of above transactions
-
-Statement - converts log into statement table
-
-Date - provides today's date in correct format
-
-Splitting between Transaction, log and Statement classes preserves SRP. Having a single Account class that provides access to these simplifies the user's expirience - the user does not need to understand the split in functionality between the classes in order to use all features available. 
-
-Include a screenshot of your running app?
-
-Have reasonable spelling & grammar?
-
-
-
-# Split out log
-
-
-
-Split create_transaction from add_to_log (might be redundent after Log class) - check methods as short as possible
-
-
-
 ## Installation
 
 This program requires **Ruby version 3.0.0**. If you are unsure if you have Ruby installed, or need help seeing the version you are using [codecademy](https://www.codecademy.com) provide this useful guide to [**setup Ruby**](https://www.codecademy.com/articles/ruby-setup).
@@ -82,12 +48,28 @@ The above example would be implimented as below on the command line:
 ```sh
 $ irb -r './lib/account.rb'
 3.0.0 :001> current_ac = Account.new
+ => #<Account:0x0000...
 3.0.0 :002> current_ac.deposit(1000, '10/01/2012')
+ => [{:type=>"depos...
 3.0.0 :003> current_ac.deposit(2000, '13/01/2012')
+ => [{:type=>"depos...
 3.0.0 :004> current_ac.withdraw(500, '14/01/2012')
+ => [{:type=>"depos...
 3.0.0 :005> current_ac.statement
  => "date || credit || debit || balance\n14/01/2012 || || 500.00 || 2500.00\n13/01/2012 || 2000.00 || || 3000.00\n10/01/2012 || 1000.00 || || 1000.00"
 ```
+
+## Design
+
+I split into the following class:
+
+Account - allows user to add/subtract from the balance through deposit/withdraw transactions and creates a log of these transactions
+
+Statement - converts log into statement table
+
+Date - provides today's date in correct format
+
+Given further time I would have extracted the log into a seperate Log class (this currently sits in the Account class which breaches SRP).
 
 ## Running Tests
 
