@@ -19,10 +19,9 @@ describe Account do
     end
 
     it "can accept a deposit and add today's date to log" do
+      class_double(Date, todays_date: 'today in date form').as_stubbed_const
       account.deposit(1)
-      date = Time.now
-      today = date.strftime('%d/%m/%Y')
-      expect(account.log.first[:date]).to eq(today)
+      expect(account.log.first[:date]).to eq('today in date form')
     end
 
     it 'can accept a deposit and add a user provided date to log' do
@@ -56,10 +55,9 @@ describe Account do
     end
 
     it "can accept a withdrawal and add today's date to log" do
+      class_double(Date, todays_date: 'today in date form').as_stubbed_const
       account.withdraw(1)
-      date = Time.now
-      today = date.strftime('%d/%m/%Y')
-      expect(account.log.first[:date]).to eq(today)
+      expect(account.log.first[:date]).to eq('today in date form')
     end
 
     it 'can accept a withdrawral and add a user provided date to log' do

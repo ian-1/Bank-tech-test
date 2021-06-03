@@ -1,4 +1,5 @@
 require 'statement'
+require 'date'
 
 class Account
   attr_reader :log
@@ -9,12 +10,12 @@ class Account
     @statement = statement
   end
 
-  def deposit(amount, date = todays_date)
+  def deposit(amount, date = Date.todays_date)
     @balance += amount
     add_to_log('deposit', amount, date)
   end
 
-  def withdraw(amount, date = todays_date)
+  def withdraw(amount, date = Date.todays_date)
     @balance -= amount
     add_to_log('withdrawal', amount, date)
   end
@@ -33,10 +34,5 @@ class Account
       balance: @balance
     }
     @log << transaction
-  end
-
-  def todays_date
-    time = Time.now
-    time.strftime('%d/%m/%Y')
   end
 end

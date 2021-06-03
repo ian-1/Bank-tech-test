@@ -1,8 +1,44 @@
 # Bank tech test
 
-**Bank tech test** is a small simulation a basic bank account. 
+**Bank tech test** is a small simulation a basic bank account.
+
+The program accepts the user inputting either a deposit or a withdrawal of money (the user can specify a date for this transaction or it will default to todays date). The program then creates a log of that transaction listing the date of transaction, the type (deposit/withdrawal), the amount deposited/withdrawn and the account balance at the end of that transaction.  The user can then print a statement which will use this log to provide a table of transactions (in reverse chronological order) with a date, credit, debit and balance row.
 
 This program was built  using **TDD** as part of [**Makers Academy Coding Bootcamp**]([http://makers.tech](http://makers.tech/)).
+
+
+
+Describe how to install dependencies, run your tests, and run the project?
+
+Describe your approach?
+
+Describe how you structured your code and why?
+
+Account - acts a controller redirecting user to either Transaction (deposit/withdraw) or Statement (view). This means the user does not need to understand the split in functionality between the classes in order to use all features available (and does not need to instantiate each class separately).
+
+Transaction - allows user to add/subtract from the balance through deposit/withdraw transactions
+
+Log - stores a log of above transactions
+
+Statement - converts log into statement table
+
+Date - provides today's date in correct format
+
+Splitting between Transaction, log and Statement classes preserves SRP. Having a single Account class that provides access to these simplifies the user's expirience - the user does not need to understand the split in functionality between the classes in order to use all features available. 
+
+Include a screenshot of your running app?
+
+Have reasonable spelling & grammar?
+
+
+
+# Split out log
+
+
+
+Split create_transaction from add_to_log (might be redundent after Log class) - check methods as short as possible
+
+
 
 ## Installation
 
