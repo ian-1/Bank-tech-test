@@ -28,10 +28,6 @@ RSpec/Capybara/FeatureMethods:
 RSpec/ExampleLength:
   Max: 10
 
-# Allow use of normal doubles
-RSpec/VerifiedDoubles:
-  Enabled: false
-
 # Don't restrict length of rspec blocks
 Metrics/BlockLength:
   IgnoredMethods:
