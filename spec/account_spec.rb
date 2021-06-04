@@ -92,7 +92,7 @@ describe Account do
       stub_account.deposit(123, '01/01/1990')
       log = [{ type: 'deposit', amount: 123, date: '01/01/1990', balance: 123 }]
       allow(stub_statement).to receive(:view).with(log).and_return('header + deposit entry table')
-      expect(stub_account.statement).to eq ('header + deposit entry table')
+      expect(stub_account.statement).to eq('header + deposit entry table')
     end
   end
 end
